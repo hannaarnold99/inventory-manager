@@ -1,0 +1,105 @@
+﻿@model InventoryManager.Models.StockProduct
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    body {
+        background-color: #f5f5f5; /* Light gray background */
+    }
+
+    h2 {
+        color: #3c6382; /* Blue shade */
+        font-weight: bold;
+    }
+
+    .search-field {
+        border: 2px solid #3c6382; /* Blue border */
+        border-radius: 25px;
+    }
+
+    .styled-link {
+        color: #3c6382; /* Blue text */
+        font-weight: bold;
+        text-decoration: none;
+        padding: 8px 15px;
+        border: 2px solid #3c6382; /* Blue border */
+        border-radius: 25px;
+        transition: background-color 0.3s ease;
+    }
+
+        .styled-link:hover {
+            background-color: #3c6382; /* Blue background on hover */
+            color: #fff; /* White text on hover */
+        }
+
+    .table {
+        background-color: #ffffff; /* White table background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+        .table thead th {
+            background-color: #3c6382; /* Blue header background */
+            color: #fff; /* White text */
+            border: none;
+        }
+
+        .table tbody tr:hover {
+            background-color: #dcdde1; /* Light lavender row hover */
+        }
+
+        .table td, .table th {
+            padding: 12px;
+        }
+
+    .actions {
+        text-align: right;
+    }
+
+        .actions a {
+            margin-left: 10px;
+        }
+</style>
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SKU" class="control-label"></label>
+                <input asp-for="SKU" class="form-control" />
+                <span asp-validation-for="SKU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

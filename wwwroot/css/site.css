@@ -1,0 +1,82 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+body {
+    background-color: #f5f5f5; /* Light gray background */
+    margin-bottom: 60px;
+}
+
+h2 {
+    color: #3c6382; /* Blue shade */
+    font-weight: bold;
+    
+}
+h3 {
+    color: #3c6382; /* Blue shade */
+    font-weight: bold;
+    padding-top: 20px;
+    font-size: 22px;
+}
+
+.search-field {
+    border: 2px solid #3c6382; /* Blue border */
+    border-radius: 25px;
+}
+
+.styled-link {
+    color: #3c6382; /* Blue text */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease;
+}
+
+    .styled-link:hover {
+        color: #7aa5bc;
+    }
+
+.table {
+    background-color: #ffffff; /* White table background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    border-radius: 10px; /* Rounded corners */
+}
+
+    .table thead th {
+        background-color: #3c6382; /* Blue header background */
+        color: #fff; /* White text */
+        border: none;
+    }
+
+    .table tbody tr:hover {
+        background-color: #dcdde1; /* Light lavender row hover */
+    }
+
+    .table td, .table th {
+        padding: 12px;
+    }
+
+.actions {
+    text-align: right;
+}
+
+    .actions a {
+        margin-left: 10px;
+    }
+

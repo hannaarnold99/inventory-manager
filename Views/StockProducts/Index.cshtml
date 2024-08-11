@@ -1,0 +1,123 @@
+﻿@model IEnumerable<InventoryManager.Models.StockProduct>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .search-container {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc; /* Border color */
+        border-radius: 20px; /* Rounded corners */
+        padding: 5px; /* Padding around elements */
+        background-color: #fff; /* Background color */
+    }
+
+    .search-field {
+        border: none; /* Rounded corners on the left */
+        padding: 5px;
+        flex: 1;
+    }
+
+        .search-field:focus {
+            outline: none;
+            border-width: 1px;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Focus outline */
+        }
+
+    .btn-search {
+        background-color: white; /* Button background color */
+        border: none;
+        border-radius: 25px; /* Rounded corners on the right */
+        padding: 10px 15px;
+        color: #3c6382; /* Text color */
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+        .btn-search i {
+            margin: 0;
+        }
+    .product-link {
+        color: #3c3c3c; /* Same color as SKUs */
+        text-decoration: none; /* Remove underline */
+    }
+
+        .product-link:hover {
+            color: #1e90ff; /* Blue color on hover */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+    .table-container {
+        overflow-x: auto; /* Ensure table doesn't overflow */
+    }
+
+    .table {
+        margin: 0 auto; /* Center the table horizontally */
+    }
+
+        .table th, .table td {
+            padding: 10px; /* Adjust padding as needed */
+        }
+
+            .table td:last-child {
+                padding-right: 0; /* Reduce padding on the last column */
+            }
+
+            .table th:last-child, .table td:last-child {
+                text-align: center; /* Center align last column content */
+            }
+</style>
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-6">
+            <h2>Products</h2>
+        </div>
+        <div class="col-6 actions">
+            <a asp-action="Create" class="styled-link">Create New Product</a>
+            <a asp-action="AddStock" class="styled-link">Add Stock</a>
+            <a asp-action="SearchSkus" class="styled-link">Remove Stock</a>
+        </div>
+    </div>
+    <form asp-action="SearchProducts" method="get" class="mb-4">
+        <div class="search-container">
+            <input type="text" id="search" name="query" class="search-field" placeholder="Search products..." />
+            <button type="submit" class="btn-search">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+
+    <div class="table-container w-80">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.SKU)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.SKU)</td>
+                        <td><a asp-action="Details" asp-route-id="@item.Id" class="product-link">@Html.DisplayFor(modelItem => item.Name)</a></td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

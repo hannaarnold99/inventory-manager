@@ -1,0 +1,101 @@
+﻿@model InventoryManager.Models.StockProduct
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    body {
+        background-color: #f5f5f5; /* Light gray background */
+    }
+
+    h3 {
+        color: #3c6382; /* Blue shade */
+        font-weight: bold;
+    }
+
+    .sku-name {
+        font-size: 24px;
+        font-weight: bold;
+        color: #3c6382;
+    }
+
+    .detail-row {
+        padding: 10px 0;
+    }
+
+    .stock-details {
+        font-size: 16px;
+        color: #3c6382;
+    }
+
+    .styled-link {
+        color: #3c6382; /* Blue text */
+        font-weight: bold;
+        text-decoration: none;
+        padding: 8px 15px;
+        transition: background-color 0.3s ease;
+        margin-right: 10px;
+    }
+
+    .styled-link:hover {
+        background-color: #3c6382; /* Blue background on hover */
+        color: #fff; /* White text on hover */
+    }
+
+    .sublocation-details {
+        font-size: 14px;
+
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: flex-end; /* Aligns items to the right */
+        padding-top: 15px; /* Adjust the top padding as needed */
+    }
+
+</style>
+<a asp-action="Index" class="styled-link"><i class="fas fa-arrow-left"></i></a>
+<div class="container mt-5">
+    <div class="row detail-row bg-white">
+        <div class="col-2">
+            <p class="sku-name">@Html.DisplayFor(model => model.SKU)</p>
+        </div>
+        <div class="col-10">
+            <p class="sku-name">@Html.DisplayFor(model => model.Name)</p>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row detail-row">
+        <div class="col-4 stock-details">
+            <h6>Stock on Hand:</h6>
+            <p>@Html.DisplayFor(model => model.Quantity)</p>
+        </div>
+        <div class="col-8 sublocation-details">
+            @if (Model != null && Model.StockSublocations != null)
+            {
+                foreach (var sublocation in Model.StockSublocations)
+                {
+                    if (sublocation != null)
+                    {
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li>@sublocation.Sublocation: @sublocation.SublocationQuantity</li>
+                        </ul>
+                    }
+                }
+            }
+            else
+            {
+                <p>No sublocations available.</p>
+            }
+        </div>
+    </div>
+    <hr />
+
+    <div class="button-container">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="styled-link">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model?.Id" class="styled-link">Delete</a>
+    </div>
+</div>
